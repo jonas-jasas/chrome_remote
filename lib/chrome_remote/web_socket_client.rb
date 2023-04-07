@@ -5,9 +5,9 @@ module ChromeRemote
   class WebSocketClient
     attr_reader :socket, :driver, :messages, :status
 
-    def initialize(url)
+    def initialize(url, web_socket_options = {})
       @socket = ChromeRemote::Socket.new(url)
-      @driver = ::WebSocket::Driver.client(socket)
+      @driver = ::WebSocket::Driver.client(socket, web_socket_options)
 
       @messages = []
       @status = :closed
